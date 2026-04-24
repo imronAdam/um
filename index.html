@@ -4,10 +4,156 @@
     <base target="_top">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เว็บแอป</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UM ERP</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="UM Tracking">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM%20JTacking-01.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM%20JTacking-01.png">
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM%20JTacking-01.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        .app-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-header {
+            background: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .app-logo {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .app-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .app-content {
+            flex: 1;
+            position: relative;
+        }
+        
+        .app-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <iframe style="width: 100%; height: 100vh;" scrolling="yes" src="https://script.google.com/macros/s/AKfycbz_iZb39vNama9babE9Ruy59T14aJlHPRmxYRosEAyzjIAaZpaMRxJoHlvQtp4G8CiB/exec" frameborder="0"></iframe>
+    <div class="app-container">
+        <!-- Header แสดง Logo และชื่อแอพ -->
+        <div class="app-header">
+            <img src="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM%20JTacking-01.png" 
+                 alt="UM Tracking Logo" 
+                 class="app-logo">
+            <span class="app-title">UM Tracking</span>
+        </div>
+        
+        <!-- ส่วนเนื้อหาหลัก -->
+        <div class="app-content">
+            <!-- Loading Screen -->
+            <div class="loading-screen" id="loadingScreen">
+                <div class="spinner"></div>
+            </div>
+            
+            <!-- Google Apps Script iframe -->
+            <iframe 
+                scrolling="yes" 
+                src="https://script.google.com/macros/s/AKfycbz_iZb39vNama9babE9Ruy59T14aJlHPRmxYRosEAyzjIAaZpaMRxJoHlvQtp4G8CiB/exec" 
+                frameborder="0"
+                id="appFrame"
+                title="UM Tracking Application"
+                allow="camera; microphone; geolocation">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        // ซ่อน Loading Screen เมื่อ iframe โหลดเสร็จ
+        document.getElementById('appFrame').addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 500);
+        });
+        
+        // Register Service Worker สำหรับ PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
