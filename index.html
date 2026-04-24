@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+    <base target="_top">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>UM ERP - ระบบบริหารจัดการ</title>
     
     <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="UM ERP">
+    <meta name="mobile-web-app-capable" content="yes">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM_ERP.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM_ERP.png">
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM_ERP.png">
     
-    <!-- Redirect to GAS -->
-    <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbz_iZb39vNama9babE9Ruy59T14aJlHPRmxYRosEAyzjIAaZpaMRxJoHlvQtp4G8CiB/exec">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #ffffff;
+            overflow: hidden;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <p>กำลังนำท่านไปยังระบบ UM ERP...</p>
-    <p>หากไม่เปลี่ยนหน้า <a href="https://script.google.com/macros/s/AKfycbz_iZb39vNama9babE9Ruy59T14aJlHPRmxYRosEAyzjIAaZpaMRxJoHlvQtp4G8CiB/exec">คลิกที่นี่</a></p>
+    <iframe 
+        scrolling="yes" 
+        src="https://script.google.com/macros/s/AKfycbz_iZb39vNama9babE9Ruy59T14aJlHPRmxYRosEAyzjIAaZpaMRxJoHlvQtp4G8CiB/exec" 
+        frameborder="0"
+        title="UM ERP Application">
+    </iframe>
 </body>
 </html>
