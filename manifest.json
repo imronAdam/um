@@ -1,0 +1,25 @@
+{
+    "name": "UM ERP",
+    "short_name": "UM ERP",
+    "description": "ระบบบริหารจัดการ ERP",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM%20JTacking-01.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "https://cdn.jsdelivr.net/gh/imronsamoh/UM-Logo@main/UM%20JTacking-01.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "prefer_related_applications": false
+}
